@@ -17,9 +17,13 @@ Spork.prefork do
               
    config.mock_with :rspec 
    config.fixture_path = "#{::Rails.root}/spec/fixtures" 
-   config.use_transactional_fixtures = true 
- end 
-end 
+   config.use_transactional_fixtures = true
+  end
+ 
+ def test_sign_in(user)
+    controller.sign_in(user)
+  end
+end
 
 Spork.each_run do 
 end 

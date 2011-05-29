@@ -46,6 +46,28 @@ describe "GET 'new'" do
       get :new
       response.should have_selector("title", :content => "Sign up")
     end
+     
+     
+     
+     
+    it "should have a name field" do
+      get :new
+      response.should have_selector("input[name='user[name]'][type='text']")
+    end
+   
+    it "should have an email field" do
+      get :new
+      response.should have_selector("input[name='user[email]'][type='text']")
+    end
+    
+    it "should have a password field" do
+      get :new
+      response.should have_selector("input[name='user[password]'][type='password']")
+    end
+    
+    it "should have a password confirmation field" do
+      get :new
+      response.should have_selector("input[name='user[password_confirmation]'][type='password']")    end
   end
   
  describe "POST 'create'" do
@@ -97,6 +119,12 @@ describe "GET 'new'" do
         post :create, :user => @attr
         flash[:success].should =~ /welcome to the sample app/i
       end
+      
+      it "should sign the user in" do
+        post :create, :user => @attr
+        controller.should be_signed_in
+      end
+      
     end
   end
 end
