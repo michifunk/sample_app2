@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe UsersController do
   render_views
-
-describe "GET 'show'" do
-
+  
+  describe "GET 'show'" do
+   
     before(:each) do
       @user = Factory(:user)
     end
-
+    
     it "should be successful" do
       get :show, :id => @user
       response.should be_success
@@ -18,8 +18,8 @@ describe "GET 'show'" do
       get :show, :id => @user
       assigns(:user).should == @user
     end
-  
-  it "should have the right title" do
+    
+    it "should have the right title" do
       get :show, :id => @user
       response.should have_selector("title", :content => @user.name)
     end
@@ -34,8 +34,8 @@ describe "GET 'show'" do
       response.should have_selector("h1>img", :class => "gravatar")
     end
   end
-
-describe "GET 'new'" do
+ 
+  describe "GET 'new'" do
 
     it "should be successful" do
       get :new
@@ -46,37 +46,15 @@ describe "GET 'new'" do
       get :new
       response.should have_selector("title", :content => "Sign up")
     end
-     
-     
-     
-     
-    it "should have a name field" do
-      get :new
-      response.should have_selector("input[name='user[name]'][type='text']")
-    end
-   
-    it "should have an email field" do
-      get :new
-      response.should have_selector("input[name='user[email]'][type='text']")
-    end
-    
-    it "should have a password field" do
-      get :new
-      response.should have_selector("input[name='user[password]'][type='password']")
-    end
-    
-    it "should have a password confirmation field" do
-      get :new
-      response.should have_selector("input[name='user[password_confirmation]'][type='password']")    end
   end
   
- describe "POST 'create'" do
+  describe "POST 'create'" do
 
     describe "failure" do
 
       before(:each) do
         @attr = { :name => "", :email => "", :password => "",
-                  :password_confirmation => "" }
+          :password_confirmation => "" }
       end
 
       it "should not create a user" do
@@ -95,13 +73,12 @@ describe "GET 'new'" do
         response.should render_template('new')
       end
     end
-
-
+  
     describe "success" do
 
       before(:each) do
         @attr = { :name => "New User", :email => "user@example.com",
-                  :password => "foobar", :password_confirmation => "foobar" }
+          :password => "foobar", :password_confirmation => "foobar" }
       end
 
       it "should create a user" do
@@ -114,17 +91,15 @@ describe "GET 'new'" do
         post :create, :user => @attr
         response.should redirect_to(user_path(assigns(:user)))
       end
-      
       it "should have a welcome message" do
         post :create, :user => @attr
         flash[:success].should =~ /welcome to the sample app/i
       end
-      
+
       it "should sign the user in" do
         post :create, :user => @attr
         controller.should be_signed_in
       end
-      
     end
   end
 end

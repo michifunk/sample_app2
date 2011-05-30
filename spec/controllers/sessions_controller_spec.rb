@@ -9,14 +9,14 @@ describe SessionsController do
       get :new
       response.should be_success
     end
-    
+
     it "should have the right title" do
       get :new
       response.should have_selector("title", :content => "Sign in")
     end
   end
-  
-describe "POST 'create'" do
+
+  describe "POST 'create'" do
 
     describe "invalid signin" do
 
@@ -39,7 +39,7 @@ describe "POST 'create'" do
         flash.now[:error].should =~ /invalid/i
       end
     end
-
+    
     describe "with valid email and password" do
 
       before(:each) do
@@ -47,7 +47,7 @@ describe "POST 'create'" do
         @attr = { :email => @user.email, :password => @user.password }
       end
 
-        it "should sign the user in" do
+      it "should sign the user in" do
         post :create, :session => @attr
         controller.current_user.should == @user
         controller.should be_signed_in
@@ -58,10 +58,10 @@ describe "POST 'create'" do
         response.should redirect_to(user_path(@user))
       end
     end
+
   end
 
-describe "DELETE 'destroy'" do
-
+  describe "DELETE 'destroy'" do
     it "should sign a user out" do
       test_sign_in(Factory(:user))
       delete :destroy
@@ -70,5 +70,3 @@ describe "DELETE 'destroy'" do
     end
   end
 end
-  
-

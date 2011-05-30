@@ -43,7 +43,6 @@ a:visited {
 }
 
 /* Navigation */
-
 nav {
   float: right;
 }
@@ -79,7 +78,6 @@ nav ul li a:hover {
 }
 
 /* Sign up button */
-
 a.signup_button {
   margin-left: auto;
   margin-right: auto;
@@ -94,13 +92,13 @@ a.signup_button {
 }
 
 /* Round corners */
-
 .round {
   -moz-border-radius:    10px;
   -webkit-border-radius: 10px;
   border-radius:         10px;
 }
 
+/* Footer */
 footer {
   text-align: center;
   margin-top: 10px;
@@ -112,6 +110,7 @@ footer {
 footer nav {
   float: none;
 }
+
 /* User show page */
 
 table.profile {
@@ -135,11 +134,9 @@ td.sidebar {
   border: 1px solid #999;
   margin-bottom: -15px;
 }
-
 div.field, div.actions {
   margin-bottom: 10px;
 }
-
 .field_with_errors {
   margin-top: 10px;
   padding: 2px;
