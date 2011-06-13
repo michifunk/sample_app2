@@ -1,7 +1,12 @@
 SampleApp::Application.routes.draw do 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :sessions,   :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]
+  resources :relationships, :only => [:create, :destroy]
   
   get "sessions/new"
 
@@ -16,7 +21,7 @@ SampleApp::Application.routes.draw do
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
   
-  match '/home',    :to => 'pages#home'
+  #test: match '/home',    :to => 'pages#home'
 
   root :to => "pages#home"
 
